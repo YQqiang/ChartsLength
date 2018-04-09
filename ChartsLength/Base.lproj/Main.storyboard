@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,13 +13,59 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIv-fW-rel">
+                                <rect key="frame" x="16" y="44" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LQe-cO-gcx">
+                                <rect key="frame" x="16" y="89" width="343" height="100"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="dXw-as-Rhm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zr6-n5-chW">
+                                <rect key="frame" x="310" y="205" width="51" height="31"/>
+                                <connections>
+                                    <action selector="doubleByteLimitAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="z0e-oG-xN4"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="汉字作为两个字符限制长度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpy-DW-I9V">
+                                <rect key="frame" x="94" y="210" width="208" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="LQe-cO-gcx" firstAttribute="top" secondItem="hIv-fW-rel" secondAttribute="bottom" constant="24" id="6VM-7B-aSg"/>
+                            <constraint firstItem="LQe-cO-gcx" firstAttribute="trailing" secondItem="hIv-fW-rel" secondAttribute="trailing" id="9Hv-Mu-kfR"/>
+                            <constraint firstItem="mpy-DW-I9V" firstAttribute="centerY" secondItem="zr6-n5-chW" secondAttribute="centerY" id="BfM-tR-5bu"/>
+                            <constraint firstItem="zr6-n5-chW" firstAttribute="leading" secondItem="mpy-DW-I9V" secondAttribute="trailing" constant="8" id="Ucq-Yn-XdI"/>
+                            <constraint firstItem="zr6-n5-chW" firstAttribute="top" secondItem="LQe-cO-gcx" secondAttribute="bottom" constant="16" id="XL7-b1-4E9"/>
+                            <constraint firstItem="hIv-fW-rel" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="YgP-y1-EIL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hIv-fW-rel" secondAttribute="trailing" constant="16" id="bg1-9B-v2q"/>
+                            <constraint firstItem="hIv-fW-rel" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="nAn-a3-UEd"/>
+                            <constraint firstItem="LQe-cO-gcx" firstAttribute="leading" secondItem="hIv-fW-rel" secondAttribute="leading" id="wr1-1v-Hsk"/>
+                            <constraint firstItem="zr6-n5-chW" firstAttribute="trailing" secondItem="LQe-cO-gcx" secondAttribute="trailing" id="x3b-SV-7Nd"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="doubleByteLimitSwitch" destination="zr6-n5-chW" id="V0C-Xj-3Lh"/>
+                        <outlet property="messageLabel" destination="hIv-fW-rel" id="qAn-EL-HfH"/>
+                        <outlet property="textView" destination="LQe-cO-gcx" id="bKO-L5-YF5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

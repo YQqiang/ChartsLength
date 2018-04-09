@@ -7,8 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "NSString+sgCount.h"
 
-@interface ViewController ()
+@interface ViewController ()<UITextViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UISwitch *doubleByteLimitSwitch;
 
 @end
 
@@ -16,13 +21,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.textView.delegate = self;
+    self.textView.text = @"测试字符";
+    [self textViewDidChange:self.textView];
+}
+- (IBAction)doubleByteLimitAction:(UISwitch *)sender {
+    [self textViewDidChange:self.textView];
 }
 
+- (BOOL)doubleByteLimit {
+    return self.doubleByteLimitSwitch.isOn;
+}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSUInteger)maxTextCount {
+    return 10;
+}
+
+#pragma mark - UITextViewDelegate
+- (void)textViewDidChange:(UITextView *)textView {
+    NSInteger max = self.maxTextCount;
+    NSInteger doubleByteLimit = self.doubleByteLimit;
+    [NSString dealInputValueWith:textView maxCount:max doubleByteLimit:doubleByteLimit textDidChanged:^(bool isZh, bool beyongLimit, UIView<UITextInput> *inputView) {
+        if (self.doubleByteLimit) {
+            self.messageLabel.text = [NSString stringWithFormat:@"%zd/%zd", self.textView.text.sgCount, max];
+        } else {
+            self.messageLabel.text = [NSString stringWithFormat:@"%zd/%zd", self.textView.text.length, max];
+        }
+    }];
 }
 
 
