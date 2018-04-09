@@ -88,8 +88,8 @@
 
 - (void)testIndexWithSgCount2 {
     NSString *test = @"123最大字符数ABC";
-    NSUInteger index = 10;
-    NSUInteger maxCount = 16;
+    NSUInteger index = NSNotFound;
+    NSUInteger maxCount = test.sgCount;
     XCTAssertEqual([test indexWithSgCount:maxCount], index);
 }
 

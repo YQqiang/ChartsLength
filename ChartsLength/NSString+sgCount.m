@@ -40,7 +40,7 @@ static const NSInteger sgByteCount = 2;
     for (int i = 0; i<[self length]; i++) {
         NSString *s = [self substringWithRange:NSMakeRange(i, 1)];
         count += s.isDoubleByte ? sgByteCount : 1;
-        if (count >= sgCount) {
+        if (count > sgCount) {
             return i;
         }
     }
