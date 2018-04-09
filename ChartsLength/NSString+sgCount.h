@@ -12,4 +12,6 @@
 
 - (NSUInteger)sgCount;
 
+- (NSUInteger)indexWithSgCount:(NSInteger)sgCount;
+
 @end

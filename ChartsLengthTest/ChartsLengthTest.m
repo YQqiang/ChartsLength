@@ -79,5 +79,26 @@
     XCTAssertEqual(test.sgCount, length);
 }
 
+- (void)testIndexWithSgCount1 {
+    NSString *test = @"123最大字符数ABC";
+    NSUInteger index = 6;
+    NSUInteger maxCount = 10;
+    XCTAssertEqual([test indexWithSgCount:maxCount], index);
+}
+
+- (void)testIndexWithSgCount2 {
+    NSString *test = @"123最大字符数ABC";
+    NSUInteger index = 10;
+    NSUInteger maxCount = 16;
+    XCTAssertEqual([test indexWithSgCount:maxCount], index);
+}
+
+- (void)testIndexWithSgCount3 {
+    NSString *test = @"123最大字符数ABC";
+    NSUInteger index = NSNotFound;
+    NSUInteger maxCount = 17;
+    XCTAssertEqual([test indexWithSgCount:maxCount], index);
+}
+
 
 @end
