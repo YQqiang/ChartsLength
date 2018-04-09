@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "NSString+sgCount.h"
+/***********************详情参见测试用例***********************/
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2F9123032079FFD000C7C520 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9123022079FFD000C7C520 /* main.m */; };
+		2F91230B207A001000C7C520 /* NSString+sgCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F91230A207A001000C7C520 /* NSString+sgCount.m */; };
+		2F912313207A009100C7C520 /* ChartsLengthTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F912312207A009100C7C520 /* ChartsLengthTest.m */; };
+		2F912318207A00A300C7C520 /* NSString+sgCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F91230A207A001000C7C520 /* NSString+sgCount.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,10 +28,22 @@
 /* Begin PBXFileReference section */
 		2F9122FF2079FFD000C7C520 /* ChartsLength */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChartsLength; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9123022079FFD000C7C520 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2F912309207A001000C7C520 /* NSString+sgCount.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+sgCount.h"; sourceTree = "<group>"; };
+		2F91230A207A001000C7C520 /* NSString+sgCount.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+sgCount.m"; sourceTree = "<group>"; };
+		2F912310207A009100C7C520 /* ChartsLengthTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChartsLengthTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F912312207A009100C7C520 /* ChartsLengthTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartsLengthTest.m; sourceTree = "<group>"; };
+		2F912314207A009100C7C520 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2F9122FC2079FFD000C7C520 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F91230D207A009100C7C520 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				2F9123012079FFD000C7C520 /* ChartsLength */,
+				2F912311207A009100C7C520 /* ChartsLengthTest */,
 				2F9123002079FFD000C7C520 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				2F9122FF2079FFD000C7C520 /* ChartsLength */,
+				2F912310207A009100C7C520 /* ChartsLengthTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,8 +75,19 @@
 			isa = PBXGroup;
 			children = (
 				2F9123022079FFD000C7C520 /* main.m */,
+				2F912309207A001000C7C520 /* NSString+sgCount.h */,
+				2F91230A207A001000C7C520 /* NSString+sgCount.m */,
 			);
 			path = ChartsLength;
+			sourceTree = "<group>";
+		};
+		2F912311207A009100C7C520 /* ChartsLengthTest */ = {
+			isa = PBXGroup;
+			children = (
+				2F912312207A009100C7C520 /* ChartsLengthTest.m */,
+				2F912314207A009100C7C520 /* Info.plist */,
+			);
+			path = ChartsLengthTest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -82,6 +110,23 @@
 			productReference = 2F9122FF2079FFD000C7C520 /* ChartsLength */;
 			productType = "com.apple.product-type.tool";
 		};
+		2F91230F207A009100C7C520 /* ChartsLengthTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F912315207A009100C7C520 /* Build configuration list for PBXNativeTarget "ChartsLengthTest" */;
+			buildPhases = (
+				2F91230C207A009100C7C520 /* Sources */,
+				2F91230D207A009100C7C520 /* Frameworks */,
+				2F91230E207A009100C7C520 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChartsLengthTest;
+			productName = ChartsLengthTest;
+			productReference = 2F912310207A009100C7C520 /* ChartsLengthTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -92,6 +137,11 @@
 				ORGANIZATIONNAME = sungrow;
 				TargetAttributes = {
 					2F9122FE2079FFD000C7C520 = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+					};
+					2F91230F207A009100C7C520 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
@@ -110,16 +160,37 @@
 			projectRoot = "";
 			targets = (
 				2F9122FE2079FFD000C7C520 /* ChartsLength */,
+				2F91230F207A009100C7C520 /* ChartsLengthTest */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2F91230E207A009100C7C520 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2F9122FB2079FFD000C7C520 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F91230B207A001000C7C520 /* NSString+sgCount.m in Sources */,
 				2F9123032079FFD000C7C520 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F91230C207A009100C7C520 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F912318207A00A300C7C520 /* NSString+sgCount.m in Sources */,
+				2F912313207A009100C7C520 /* ChartsLengthTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,15 +303,48 @@
 		2F9123072079FFD000C7C520 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ChartsLength/ChartsLength-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		2F9123082079FFD000C7C520 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ChartsLength/ChartsLength-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		2F912316207A009100C7C520 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ChartsLengthTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sungrow.ChartsLengthTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2F912317207A009100C7C520 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ChartsLengthTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sungrow.ChartsLengthTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -262,6 +366,15 @@
 			buildConfigurations = (
 				2F9123072079FFD000C7C520 /* Debug */,
 				2F9123082079FFD000C7C520 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2F912315207A009100C7C520 /* Build configuration list for PBXNativeTarget "ChartsLengthTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F912316207A009100C7C520 /* Debug */,
+				2F912317207A009100C7C520 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
