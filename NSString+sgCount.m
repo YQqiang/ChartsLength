@@ -92,24 +92,14 @@ static const NSInteger sgByteCount = 2;
  @param textDidChanged 文本发生改变的回调(参数表示是否是中文, 是否超出限制, 文本框)
  */
 + (void)dealInputValueWith:(UIView<UITextInput> *)inputView maxCount:(NSInteger)maxCount doubleByteLimit:(BOOL)doubleByteLimit textDidChanged:(void(^)(bool isZh, bool beyongLimit, UIView<UITextInput> *inputView))textDidChanged {
-    NSString *lang = [[UIApplication sharedApplication]textInputMode].primaryLanguage; // 键盘输入模
-    if ([lang isEqualToString:@"zh-Hans"]) { // 简体中文输入，包括简体拼音，健体五笔，简体手写
-        UITextRange *selectedRange = [inputView markedTextRange];
-        //获取高亮部分
-        UITextPosition *position = [inputView positionFromPosition:selectedRange.start offset:0];
-        // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
-        if (!position) {
-            bool beyond = [self beyondLimit:inputView maxCount:maxCount doublueByteLimit:doubleByteLimit];
-            if (textDidChanged) {
-                textDidChanged(YES, beyond, inputView);
-            }
-        }
-    }
-    // 中文输入法以外的直接对其统计限制即可，不考虑其他语种情况
-    else {
+    UITextRange *selectedRange = [inputView markedTextRange];
+    //获取高亮部分
+    UITextPosition *position = [inputView positionFromPosition:selectedRange.start offset:0];
+    // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
+    if (!position) {
         bool beyond = [self beyondLimit:inputView maxCount:maxCount doublueByteLimit:doubleByteLimit];
         if (textDidChanged) {
-            textDidChanged(NO, beyond, inputView);
+            textDidChanged(YES, beyond, inputView);
         }
     }
 }
