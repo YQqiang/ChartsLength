@@ -41,7 +41,7 @@
 - (void)textViewDidChange:(UITextView *)textView {
     NSInteger max = self.maxTextCount;
     NSInteger doubleByteLimit = self.doubleByteLimit;
-    [NSString dealInputValueWith:textView maxCount:max doubleByteLimit:doubleByteLimit textDidChanged:^(bool isZh, bool beyongLimit, UIView<UITextInput> *inputView) {
+    [NSString dealInputValueWith:textView maxCount:max doubleByteLimit:doubleByteLimit textDidChanged:^(bool beyongLimit, UIView<UITextInput> *inputView) {
         if (self.doubleByteLimit) {
             self.messageLabel.text = [NSString stringWithFormat:@"%zd/%zd", self.textView.text.sgCount, max];
         } else {

@@ -91,7 +91,7 @@ static const NSInteger sgByteCount = 2;
  @param maxCount 限制长度
  @param textDidChanged 文本发生改变的回调(参数表示是否是中文, 是否超出限制, 文本框)
  */
-+ (void)dealInputValueWith:(UIView<UITextInput> *)inputView maxCount:(NSInteger)maxCount doubleByteLimit:(BOOL)doubleByteLimit textDidChanged:(void(^)(bool isZh, bool beyongLimit, UIView<UITextInput> *inputView))textDidChanged {
++ (void)dealInputValueWith:(UIView<UITextInput> *)inputView maxCount:(NSInteger)maxCount doubleByteLimit:(BOOL)doubleByteLimit textDidChanged:(void(^)(bool beyongLimit, UIView<UITextInput> *inputView))textDidChanged {
     UITextRange *selectedRange = [inputView markedTextRange];
     //获取高亮部分
     UITextPosition *position = [inputView positionFromPosition:selectedRange.start offset:0];
@@ -99,7 +99,7 @@ static const NSInteger sgByteCount = 2;
     if (!position) {
         bool beyond = [self beyondLimit:inputView maxCount:maxCount doublueByteLimit:doubleByteLimit];
         if (textDidChanged) {
-            textDidChanged(YES, beyond, inputView);
+            textDidChanged(beyond, inputView);
         }
     }
 }

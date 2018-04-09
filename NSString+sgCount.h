@@ -14,6 +14,6 @@
 
 - (NSUInteger)indexWithSgCount:(NSInteger)sgCount;
 
-+ (void)dealInputValueWith:(UIView<UITextInput> *)inputView maxCount:(NSInteger)maxCount doubleByteLimit:(BOOL)doubleByteLimit textDidChanged:(void(^)(bool isZh, bool beyongLimit, UIView<UITextInput> *inputView))textDidChanged;
++ (void)dealInputValueWith:(UIView<UITextInput> *)inputView maxCount:(NSInteger)maxCount doubleByteLimit:(BOOL)doubleByteLimit textDidChanged:(void(^)(bool beyongLimit, UIView<UITextInput> *inputView))textDidChanged;
 
 @end
