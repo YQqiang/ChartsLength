@@ -1,19 +1,19 @@
 //
-//  sgCountTest.m
-//  sgCountTest
+//  ChartsLengthTests.m
+//  ChartsLengthTests
 //
-//  Created by sungrow on 2018/4/8.
+//  Created by sungrow on 2018/4/9.
 //  Copyright © 2018年 sungrow. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 #import "NSString+sgCount.h"
 
-@interface sgCountTest : XCTestCase
+@interface ChartsLengthTests : XCTestCase
 
 @end
 
-@implementation sgCountTest
+@implementation ChartsLengthTests
 
 - (void)setUp {
     [super setUp];
@@ -99,6 +99,5 @@
     NSUInteger maxCount = 17;
     XCTAssertEqual([test indexWithSgCount:maxCount], index);
 }
-
 
 @end
