@@ -12,6 +12,7 @@ static const NSInteger sgByteCount = 2;
 
 @implementation NSString (sgCount)
 
+#pragma mark - public func
 /**
  计算文本长度
  汉字为双字节
@@ -60,6 +61,29 @@ static const NSInteger sgByteCount = 2;
 }
 
 /**
+ 处理输入框统计文本
+
+ @param inputView 输入控件
+ @param maxCount 限制长度
+ @param doubleByteLimit 是否使用双字节限制
+ @param textDidChanged 文本发生改变的回调(参数列表: 是否超出限制, 文本框)
+ */
++ (void)dealInputValueWith:(UIView<UITextInput> *)inputView maxCount:(NSInteger)maxCount doubleByteLimit:(BOOL)doubleByteLimit textDidChanged:(void(^)(bool beyongLimit, UIView<UITextInput> *inputView))textDidChanged {
+    UITextRange *selectedRange = [inputView markedTextRange];
+    //获取高亮部分
+    UITextPosition *position = [inputView positionFromPosition:selectedRange.start offset:0];
+    // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
+    if (!position) {
+        bool beyond = [self beyondLimit:inputView maxCount:maxCount doublueByteLimit:doubleByteLimit];
+        if (textDidChanged) {
+            textDidChanged(beyond, inputView);
+        }
+    }
+}
+
+#pragma mark - private func
+
+/**
  kvc 设置 text
  
  @param text text
@@ -82,26 +106,6 @@ static const NSInteger sgByteCount = 2;
         return [inputView valueForKey:@"text"];
     }
     return @"";
-}
-
-/**
- 处理输入框统计文本
- 
- @param inputView 输入控件
- @param maxCount 限制长度
- @param textDidChanged 文本发生改变的回调(参数表示是否是中文, 是否超出限制, 文本框)
- */
-+ (void)dealInputValueWith:(UIView<UITextInput> *)inputView maxCount:(NSInteger)maxCount doubleByteLimit:(BOOL)doubleByteLimit textDidChanged:(void(^)(bool beyongLimit, UIView<UITextInput> *inputView))textDidChanged {
-    UITextRange *selectedRange = [inputView markedTextRange];
-    //获取高亮部分
-    UITextPosition *position = [inputView positionFromPosition:selectedRange.start offset:0];
-    // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
-    if (!position) {
-        bool beyond = [self beyondLimit:inputView maxCount:maxCount doublueByteLimit:doubleByteLimit];
-        if (textDidChanged) {
-            textDidChanged(beyond, inputView);
-        }
-    }
 }
 
 + (bool)beyondLimit:(UIView<UITextInput> *)inputView maxCount:(NSInteger)maxCountValue doublueByteLimit:(BOOL)doubleByteLimit {
