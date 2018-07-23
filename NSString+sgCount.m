@@ -149,12 +149,10 @@ static const NSInteger sgByteCount = 2;
             NSString *str1 = [format substringWithRange:result.range];
             NSString *str2 = [str1 stringByReplacingOccurrencesOfString:@"@" withString:@"$@"];
             [resultPair setObject:str2 forKey:str1];
-            NSLog(@"------ str1 = %@; ----- str2 = %@", str1, str2);
         }
         for (NSString *key in resultPair.allKeys) {
             format = [format stringByReplacingOccurrencesOfString:key withString:resultPair[key]];
         }
-        NSLog(@"------ format = %@", format);
     }
     va_list vaList;
     va_start(vaList, format);
