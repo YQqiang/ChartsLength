@@ -130,4 +130,37 @@ static const NSInteger sgByteCount = 2;
     return NO;
 }
 
+/**
+ 格式化字符串
+ 
+ NSString *s = [NSString stringWithSGFormat:@"---%2@ --- %4@ --- %3@", @"123", @"456", @"7890", @"abcdef", @"jhkl"];
+ result: ---- s = ---123 --- 7890 --- 456
+ 
+ @param format 格式化字符
+ @return 格式化字符串
+ */
++ (instancetype)stringWithSGFormat:(NSString *)format, ... {
+    NSError *error = nil;
+    NSRegularExpression *regularExp = [NSRegularExpression regularExpressionWithPattern:@"(%\\d@)" options:NSRegularExpressionCaseInsensitive error:&error];
+    if (error == nil) {
+        NSArray <NSTextCheckingResult *>*matches = [regularExp matchesInString:format options:0 range:NSMakeRange(0, format.length)];
+        NSMutableDictionary *resultPair = [NSMutableDictionary dictionary];
+        for (NSTextCheckingResult *result in matches) {
+            NSString *str1 = [format substringWithRange:result.range];
+            NSString *str2 = [str1 stringByReplacingOccurrencesOfString:@"@" withString:@"$@"];
+            [resultPair setObject:str2 forKey:str1];
+            NSLog(@"------ str1 = %@; ----- str2 = %@", str1, str2);
+        }
+        for (NSString *key in resultPair.allKeys) {
+            format = [format stringByReplacingOccurrencesOfString:key withString:resultPair[key]];
+        }
+        NSLog(@"------ format = %@", format);
+    }
+    va_list vaList;
+    va_start(vaList, format);
+    NSString *s = [[NSString alloc] initWithFormat:format arguments:vaList];
+    va_end(vaList);
+    return s;
+}
+
 @end

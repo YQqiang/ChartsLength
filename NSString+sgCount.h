@@ -16,4 +16,6 @@
 
 + (void)dealInputValueWith:(UIView<UITextInput> *)inputView maxCount:(NSInteger)maxCount doubleByteLimit:(BOOL)doubleByteLimit textDidChanged:(void(^)(bool beyongLimit, UIView<UITextInput> *inputView))textDidChanged;
 
++ (instancetype)stringWithSGFormat:(NSString *)format, ... ;
+
 @end
