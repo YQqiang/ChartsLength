@@ -100,4 +100,65 @@
     XCTAssertEqual([test indexWithSgCount:maxCount], index);
 }
 
+- (void)testI18N_JS1 {
+    NSString *format = @"{0}";
+    NSString *result = [NSString i18nFormat:format, @"123"];
+    XCTAssertEqualObjects(@"123", result);
+}
+
+- (void)testI18N_JS2 {
+    NSString *format = @"{0}-{1}";
+    NSString *result = [NSString i18nFormat:format, @"123", @"456"];
+    XCTAssertEqualObjects(@"123-456", result);
+}
+
+- (void)testI18N_JS3 {
+    NSString *format = @"{1}-{0}";
+    NSString *result = [NSString i18nFormat:format, @"123", @"456"];
+    XCTAssertEqualObjects(@"456-123", result);
+}
+
+- (void)testI18N_JS4 {
+    NSString *format = @"{2}-{0}-{1}";
+    NSString *result = [NSString i18nFormat:format, @"123", @"456", @"789"];
+    XCTAssertEqualObjects(@"789-123-456", result);
+}
+
+- (void)testI18N_JS5 {
+    NSString *format = @"{2}-{0}-{1}-{3}";
+    NSString *result = [NSString i18nFormat:format, @"123", @"456", @"789", @"abc"];
+    XCTAssertEqualObjects(@"789-123-456-abc", result);
+}
+
+- (void)testI18N_OC1 {
+    NSString *format = @"%@";
+    NSString *result = [NSString i18nFormat:format, @"123"];
+    XCTAssertEqualObjects(@"123", result);
+}
+
+- (void)testI18N_OC2 {
+    NSString *format = @"%1@-%2@";
+    NSString *result = [NSString i18nFormat:format, @"123", @"456"];
+    XCTAssertEqualObjects(@"123-456", result);
+}
+
+- (void)testI18N_OC3 {
+    NSString *format = @"%2@-%1@";
+    NSString *result = [NSString i18nFormat:format, @"123", @"456"];
+    XCTAssertEqualObjects(@"456-123", result);
+}
+
+- (void)testI18N_OC4 {
+    NSString *format = @"%3@-%1@-%2@";
+    NSString *result = [NSString i18nFormat:format, @"123", @"456", @"789"];
+    XCTAssertEqualObjects(@"789-123-456", result);
+}
+
+- (void)testI18N_OC5 {
+    NSString *format = @"%3@-%1@-%2@-%4@";
+    NSString *result = [NSString i18nFormat:format, @"123", @"456", @"789", @"abc"];
+    XCTAssertEqualObjects(@"789-123-456-abc", result);
+}
+
+
 @end

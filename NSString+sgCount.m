@@ -130,34 +130,42 @@ static const NSInteger sgByteCount = 2;
     return NO;
 }
 
-/**
- 格式化字符串
- 
- NSString *s = [NSString stringWithSGFormat:@"---%2@ --- %4@ --- %3@", @"123", @"456", @"7890", @"abcdef", @"jhkl"];
- result: ---- s = ---123 --- 7890 --- 456
- 
- @param format 格式化字符
- @return 格式化字符串
- */
-+ (instancetype)stringWithSGFormat:(NSString *)format, ... {
++ (NSString *)i18nFormat:(NSString *)format, ... {
+    va_list args;
+    va_start(args, format);
+    NSString *result = [format i18nFormatBase:args];
+    va_end(args);
+    return result;
+}
+
+- (NSString *)i18nFormatBase:(va_list)vaList {
+    NSString *format = self;
     NSError *error = nil;
     NSRegularExpression *regularExp = [NSRegularExpression regularExpressionWithPattern:@"(%\\d@)" options:NSRegularExpressionCaseInsensitive error:&error];
     if (error == nil) {
-        NSArray <NSTextCheckingResult *>*matches = [regularExp matchesInString:format options:0 range:NSMakeRange(0, format.length)];
         NSMutableDictionary *resultPair = [NSMutableDictionary dictionary];
-        for (NSTextCheckingResult *result in matches) {
-            NSString *str1 = [format substringWithRange:result.range];
-            NSString *str2 = [str1 stringByReplacingOccurrencesOfString:@"@" withString:@"$@"];
-            [resultPair setObject:str2 forKey:str1];
+        NSArray <NSTextCheckingResult *>*matches = [regularExp matchesInString:format options:0 range:NSMakeRange(0, format.length)];
+        if (matches.count > 0) {
+            for (NSTextCheckingResult *result in matches) {
+                NSString *str1 = [format substringWithRange:result.range];
+                NSString *str2 = [str1 stringByReplacingOccurrencesOfString:@"@" withString:@"$@"];
+                [resultPair setObject:str2 forKey:str1];
+            }
+        } else {
+            regularExp = [NSRegularExpression regularExpressionWithPattern:@"(\\{\\d\\})" options:NSRegularExpressionCaseInsensitive error:&error];
+            matches = [regularExp matchesInString:format options:0 range:NSMakeRange(0, format.length)];
+            for (NSTextCheckingResult *result in matches) {
+                NSString *str1 = [format substringWithRange:result.range];
+                NSString *index = [str1 substringWithRange:NSMakeRange(1, str1.length -2)];
+                NSString *str2 = [NSString stringWithFormat:@"%%%zd$@", [index integerValue] + 1];
+                [resultPair setObject:str2 forKey:str1];
+            }
         }
         for (NSString *key in resultPair.allKeys) {
             format = [format stringByReplacingOccurrencesOfString:key withString:resultPair[key]];
         }
     }
-    va_list vaList;
-    va_start(vaList, format);
     NSString *s = [[NSString alloc] initWithFormat:format arguments:vaList];
-    va_end(vaList);
     return s;
 }
 
